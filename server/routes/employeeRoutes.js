@@ -3,7 +3,7 @@ import Employee from "../models/employee.js";
 
 const router = express.Router();
 
-// ✅ CREATE - Add new employee
+// CREATE - Add new employee
 router.post("/", async (req, res) => {
   try {
     const { full_name, email, hashed_password } = req.body;

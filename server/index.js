@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 // Load .env from the same folder as index.js
 dotenv.config({ path: path.join(__dirname, ".env") });
 
-console.log("🔍 MONGODB_URL =", process.env.MONGODB_URL);
+//console.log("MONGODB_URL =", process.env.MONGODB_URL); testing connection string
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,7 +30,7 @@ app.use("/api/project_assignments", projectAssignmentR);
 try {
   await mongoose.connect(process.env.MONGODB_URL);
   console.log("Connected to MongoDB Atlas");
-  console.log(`🛢️ Using database: ${mongoose.connection.name}`);
+  console.log(`Using database: ${mongoose.connection.name}`);
 } catch (err) {
   console.error("MongoDB connection error:", err);
 }
@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
   res.send("Backend is working!");
 });
 
-// ✅ Serve static frontend files from /client/dist (for production)
+// Serve static frontend files from /client/dist (for production)
 const clientPath = path.resolve(__dirname, "../client/dist");
 app.use(express.static(clientPath));
 
