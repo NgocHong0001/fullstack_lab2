@@ -4,34 +4,46 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const AssignmentList = () => {
+function AssignmentList() {
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/project_assignments")
+    axios.get("http://localhost:3000/api/project_assignments")
       .then((res) => {
-        setAssignments(res.data);
+        // Show only the latest 5 (assuming newest are last)
+        const latestFive = res.data.slice(-5).reverse();
+        setAssignments(latestFive);
       })
       .catch((err) => {
-        console.error("Error fetching assignments:", err);
+        console.error("Failed to fetch assignments:", err);
       });
   }, []);
 
   return (
     <div>
-      <h2>📋 Project Assignments</h2>
-      <ul>
-        {assignments.map((a, index) => (
-          <li key={index}>
-            👤 <strong>{a.employee.full_name}</strong> is assigned to 📁{" "}
-            <strong>{a.project.project_name}</strong> on 📅{" "}
-            {a.start_date.split("T")[0]} 
-          </li>
-        ))}
-      </ul>
+      <h2>Latest 5 Project Assignments</h2>
+      <table border="1" cellPadding="6">
+        <thead>
+          <tr>
+            <th>Employee_ID</th>
+            <th>Employee_name</th>
+            <th>Project_name</th>
+            <th>Start_date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {assignments.map((a, index) => (
+            <tr key={index}>
+              <td>{a.employee_id}</td>
+              <td>{a.employee_id?.full_name || a.employee_name}</td>
+              <td>{a.project_code?.project_name || a.project_name}</td>
+              <td>{new Date(a.start_date).toLocaleDateString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
 
 export default AssignmentList;

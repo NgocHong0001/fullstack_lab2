@@ -4,7 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import Employee from "./models/employee.js";
-import Project from "./models/project.js";
+import Project from "./models/Project.js";
 import ProjectAssignment from "./models/projectAss.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,16 +12,16 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 await mongoose.connect(process.env.MONGODB_URL);
-console.log("✅ Connected to MongoDB");
+console.log("Connected to MongoDB");
 
 // Reusable helper function
 async function seedIfEmpty(model, name, data) {
   const count = await model.countDocuments();
   if (count === 0) {
     await Promise.all(data.map(item => model.create(item)));
-    console.log(`✅ ${name} inserted`);
+    console.log(`${name} inserted`);
   } else {
-    console.log(`ℹ️ ${name} already exist — skipping`);
+    console.log(`${name} already exist — skipping`);
   }
 }
 

@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
+import cors from "cors";
 
 import employeeR from "./routes/employeeRoutes.js";
 import projectR from "./routes/projectRoutes.js";
@@ -18,6 +19,7 @@ dotenv.config({ path: path.join(__dirname, ".env") });
 //console.log("MONGODB_URL =", process.env.MONGODB_URL); testing connection string
 
 const app = express();
+app.use(cors()); // Enable CORS for all routes, always after express!
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
