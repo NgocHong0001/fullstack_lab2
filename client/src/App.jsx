@@ -4,7 +4,7 @@ import AssignmentList from "./components/AssignmentList";
 function App() {
   return (
     <div className="App">
-      <h1>🚀 Project Dashboard</h1>
+      <h1>Project Assignments</h1>
       <AssignmentList />
     </div>
   );
