@@ -6,11 +6,26 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  transition: background-color 2s ease-in-out; /* Smooth transition for background color when reload*/
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevents the browser from applying its own styles option 2 with transition background more dynamic! */
+@keyframes fadeBackground {
+  from {
+    background-color: #000000;
+  }
+  to {
+    background-color: #242424;
+  }
+}
+
+body {
+  animation: fadeBackground 1s ease forwards;
 }
 
 a {

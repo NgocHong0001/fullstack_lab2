@@ -3,6 +3,7 @@
 // useEffect: run something when the component loads or updates
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./table.css"; 
 
 function AssignmentList() {
   const [assignments, setAssignments] = useState([]);
@@ -56,8 +57,8 @@ function AssignmentList() {
   });
 
   return (
-    <div>
-      <table border="1" cellPadding="6">
+    <div className="table-container">
+      <table className="assignment-table">
         <thead>
           <tr>
             <th onClick={() => handleSort("employee_id")}>Employee_ID</th>
