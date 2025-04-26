@@ -3,7 +3,7 @@ import Employee from "../models/employee.js";
 
 const router = express.Router();
 
-// CREATE - Add new employee
+// Add new employee
 router.post("/", async (req, res) => {
   try {
     const { full_name, email, hashed_password } = req.body;
@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // Check for unique email (optional but realistic)
+    // Check for unique email
     const existing = await Employee.findOne({ email });
     if (existing) {
       return res.status(409).json({ error: "Email already exists" });
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// READ - Get all employees
+// Get all employees
 router.get("/", async (req, res) => {
   try {
     const employees = await Employee.find();
@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// READ - Get one employee by ID
+//Get one employee by ID
 router.get("/:employee_id", async (req, res) => {
   try {
     const employee = await Employee.findOne({ employee_id: req.params.employee_id });

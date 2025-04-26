@@ -5,7 +5,7 @@ import Project from "../models/Project.js";
 
 const router = express.Router();
 
-//CREATE - Assign employee to project
+//Assign employee to project
 router.post("/", async (req, res) => {
   try {
     const { employee_id, project_code, start_date } = req.body;
@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// READ - Get all project assignments (with populated data)
+// Get all project assignments (with populated data)
 router.get("/", async (req, res) => {
   try {
     const assignments = await ProjectAssignment.find();

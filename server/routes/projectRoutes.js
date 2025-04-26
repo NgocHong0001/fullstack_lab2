@@ -2,7 +2,7 @@ import express from "express";
 import Project from "../models/Project.js";
 
 const router = express.Router();
-//CREATE - Add new project
+//Add new project
 router.post("/", async (req, res) => {
   try {
     const {project_code, project_name, project_description} = req.body;
